@@ -2,7 +2,10 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  // GitHub Pages serves the site from /Universe/, not the domain root. Only
+  // production builds need it; dev stays at / so localhost:5173 still works.
+  base: command === 'build' ? '/Universe/' : '/',
   plugins: [react(), tailwindcss()],
   server: { port: 5173 },
   build: {
@@ -19,4 +22,4 @@ export default defineConfig({
     },
     chunkSizeWarningLimit: 900,
   },
-})
+}))
