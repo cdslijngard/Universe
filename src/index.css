@@ -1,0 +1,32 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background: #04060f;
+  color: #e8ecf5;
+  overscroll-behavior: none;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The canvas owns all pointer input; UI panels opt back in. */
+canvas { display: block; touch-action: none; }
+
+/* Hide scrollbars in the info panel without losing scrollability. */
+.scroll-slim { scrollbar-width: thin; scrollbar-color: rgb(255 255 255 / 0.18) transparent; }
+.scroll-slim::-webkit-scrollbar { width: 6px; }
+.scroll-slim::-webkit-scrollbar-thumb { background: rgb(255 255 255 / 0.18); border-radius: 3px; }
+.scroll-slim::-webkit-scrollbar-track { background: transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
